@@ -6,9 +6,52 @@ $data = [
 
 layout('header-login', $data);
 
+if(checkLogin()) {
+    redirect('?module=users');
+}
+
+if(isPost()) {
+    $formData = getBody();
+    if(!empty($formData['email']) && !empty($formData['password'])) {
+        $email = $formData['email'];
+        $password = $formData['password'];
+
+        $queryData = firstRaw("SELECT id, password FROM users WHERE email='$email'");
+        if(!empty($queryData)) {
+            $userId = $queryData['id'];
+            $passwordHash = $queryData['password'];
+            if(password_verify($password, $passwordHash)) {
+                $tokenLogin = sha1(uniqid().time());
+                $dataInsert = [
+                    'userId' => $userId,
+                    'token' => $tokenLogin,
+                    'createdAt' => date('Y-m-d H:i:s')
+                ];
+                $insertStatus = insert('login_token', $dataInsert);
+                if($insertStatus) {
+                    setSession('tokenLogin', $tokenLogin);
+                    redirect('?module=users');
+                } else {
+                    setFlashData('msg', 'Lỗi hệ thống, tạm thời không đăng nhập được');
+                    setFlashData('type', 'danger');
+                }
+            } else {
+                setFlashData('msg', 'Mật khẩu không chính xác');
+                setFlashData('type', 'danger');
+            }
+        } else {
+            setFlashData('msg', 'Tài khoản không tồn tại trong hệ thống');
+            setFlashData('type', 'danger');
+        }
+    } else {
+        setFlashData('msg', 'Vui lòng nhập đầy đủ thông tin');
+        setFlashData('type', 'danger');
+    }
+    redirect('?module=auth&action=login');
+}
+
 $msg = getFlashData('msg');
 $type = getFlashData('type');
-
 ?>
 
 <div class="row">

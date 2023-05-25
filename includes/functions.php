@@ -142,3 +142,18 @@ function redirect($path = 'index.php') {
 function displayInputValuePre($fieldName, $data) {
     echo (!empty($data[$fieldName])) ? $data[$fieldName] : false;
 }
+
+function checkLogin() {
+    $checkLogin = false;
+    if(getSession('tokenLogin')) {
+        $tokenLogin = getSession('tokenLogin');
+    
+        $queryData = firstRaw("SELECT userId FROM login_token WHERE token='$tokenLogin'");
+        if(!empty($queryData)) {
+            $checkLogin = true;
+        } else {
+            removeSession('tokenLogin');
+        }
+    }
+    return $checkLogin;
+}
