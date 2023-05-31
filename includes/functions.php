@@ -140,7 +140,7 @@ function redirect($path = 'index.php') {
 }
 
 function displayInputValuePre($fieldName, $data) {
-    echo (!empty($data[$fieldName])) ? $data[$fieldName] : false;
+    return (!empty($data[$fieldName])) ? $data[$fieldName] : false;
 }
 
 function checkLogin() {

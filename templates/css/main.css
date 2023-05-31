@@ -3,3 +3,8 @@
   font-size: 90%;
   font-style: italic;
 }
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+}

@@ -49,7 +49,7 @@ if(!empty($token)) {
 
                     $subject = 'Đổi mật khẩu thành công';
                     $content = 'Chào '.$fullname.'<br/>';
-                    $content .= 'Bạn đã thay đổi mật khẩu thành công.';
+                    $content .= 'Chúc mừng bạn đã thay đổi mật khẩu thành công.';
                     sendMail($email, $subject, $content);
 
                     redirect('?module=auth&action=login');

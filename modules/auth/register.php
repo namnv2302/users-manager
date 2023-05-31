@@ -118,19 +118,19 @@ $formDataPre = getFlashData('formDataPre');
         <form action="" method="post">
             <div class="form-group mb-3">
                 <label for="name" class="form-label">Họ tên</label>
-                <input type="text" id="name" name="fullname" class="form-control" placeholder="Họ tên..." value="<?php displayInputValuePre('fullname', $formDataPre) ?>">
+                <input type="text" id="name" name="fullname" class="form-control" placeholder="Họ tên..." value="<?php echo displayInputValuePre('fullname', $formDataPre) ?>">
                 <span class="error"><?php echo (!empty($errors['fullname'])) ? reset($errors['fullname']) : false; ?></span>
             </div>
 
             <div class="form-group mb-3">
                 <label for="phone" class="form-label">Điện thoại</label>
-                <input type="text" id="phone" name="phone" class="form-control" placeholder="Điện thoại..." value="<?php displayInputValuePre('phone', $formDataPre) ?>">
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="Điện thoại..." value="<?php echo displayInputValuePre('phone', $formDataPre) ?>">
                 <span class="error"><?php echo (!empty($errors['phone'])) ? reset($errors['phone']) : false; ?></span>
             </div>
 
             <div class="form-group mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Địa chỉ email..." value="<?php displayInputValuePre('email', $formDataPre) ?>">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Địa chỉ email..." value="<?php echo displayInputValuePre('email', $formDataPre) ?>">
                 <span class="error"><?php echo (!empty($errors['email'])) ? reset($errors['email']) : false; ?></span>
             </div>
 
