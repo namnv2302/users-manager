@@ -16,7 +16,7 @@ if(isPost()) {
         $email = $formData['email'];
         $password = $formData['password'];
 
-        $queryData = firstRaw("SELECT id, password FROM users WHERE email='$email'");
+        $queryData = firstRaw("SELECT id, password FROM users WHERE email='$email' AND status=1");
         if(!empty($queryData)) {
             $userId = $queryData['id'];
             $passwordHash = $queryData['password'];
@@ -40,7 +40,7 @@ if(isPost()) {
                 setFlashData('type', 'danger');
             }
         } else {
-            setFlashData('msg', 'Tài khoản không tồn tại trong hệ thống');
+            setFlashData('msg', 'Tài khoản không tồn tại trong hệ thống hoặc chưa kích hoạt');
             setFlashData('type', 'danger');
         }
     } else {

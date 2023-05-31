@@ -141,7 +141,7 @@ $type = getFlashData('type');
                         <i class="ti-marker-alt"></i>
                     </a>
                 </td>
-                <td><a href="#" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="ti-trash"></i></a></td>
+                <td><a href="<?php echo '?module=users&action=delete&id='.$item['id']; ?>" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="ti-trash"></i></a></td>
             </tr>
             <?php endforeach; else: ?>
                 <tr>
